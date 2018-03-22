@@ -13,19 +13,19 @@ const int DOWN_CODE = 80;
 const int LEFT_CODE = 75;
 const int RIGHT_CODE = 77;
 
-ConsoleHandler::ConsoleHandler (int screen_height, int screen_width, const std::string& title) : 
-    screen_height_(screen_height), screen_width_(screen_width), title_(title) {
+ConsoleHandler::ConsoleHandler (int screenHeight, int screenWidth, const std::string& title) : 
+    screenHeight_(screenHeight), screenWidth_(screenWidth), title_(title) {
     
     system (("title " + title_).c_str());
 
     _COORD coordinates;
-    coordinates.X = screen_width_;
-    coordinates.Y = screen_height_;
+    coordinates.X = screenWidth_;
+    coordinates.Y = screenHeight_;
     _SMALL_RECT rectangle;
     rectangle.Top = 0;
     rectangle.Left = 0;
-    rectangle.Bottom = screen_height_ - 1;
-    rectangle.Right = screen_width_ - 1;
+    rectangle.Bottom = screenHeight_ - 1;
+    rectangle.Right = screenWidth_ - 1;
 
     HANDLE hCons = GetStdHandle (STD_OUTPUT_HANDLE);
     CONSOLE_CURSOR_INFO cursor = { 100, false };
@@ -35,20 +35,20 @@ ConsoleHandler::ConsoleHandler (int screen_height, int screen_width, const std::
 }
 
 std::vector<std::string> ConsoleHandler::GetEmptyScreen () {
-    return std::vector<std::string> (screen_height_, std::string (screen_width_, ' '));
+    return std::vector<std::string> (screenHeight_, std::string (screenWidth_, ' '));
 }
 
 std::string ConsoleHandler::MakeCentred (const std::string& string) {
-    int string_length = string.size ();
-    if (string_length > screen_width_) {
-        string_length = screen_width_;
+    int stringLength = string.size ();
+    if (stringLength > screenWidth_) {
+        stringLength = screenWidth_;
     }
-    int offset = (screen_width_ - string_length) / 2;
-    std::string centred_string (screen_width_, ' ');
-    for (int i = 0; i < string_length; ++i) {
-        centred_string[offset + i] = string[i];
+    int offset = (screenWidth_ - stringLength) / 2;
+    std::string centredString (screenWidth_, ' ');
+    for (int i = 0; i < stringLength; ++i) {
+        centredString[offset + i] = string[i];
     }
-    return centred_string;
+    return centredString;
 }
 
 std::string ConsoleHandler::MakeSelected (const std::string& string) {

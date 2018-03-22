@@ -8,7 +8,7 @@ enum class Key {
 
 class ConsoleHandler {
 public:
-    ConsoleHandler (int screen_height, int screen_wigth, const std::string& title);
+    ConsoleHandler (int screenHeight, int screenWidth, const std::string& title);
     void Show (const std::vector<std::string>& screen);
     Key GetPressedKey ();
     bool KeyPressed ();
@@ -18,7 +18,7 @@ public:
     std::string MakeSelected (const std::string& string);
 
 private:
-    int screen_height_;
-    int screen_width_;
+    int screenHeight_;
+    int screenWidth_;
     std::string title_;
 };
